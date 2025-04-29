@@ -7,7 +7,7 @@ namespace Dungeon
         public override void Betreten(Held held, Welt welt)
         {
             held.Standort = this;
-            held.aktuelleWelt = welt;
+            held.AktuelleWelt= welt;
             Console.WriteLine($"Hallo {held.Name} - Willkommen in der Welt {welt.Name}");
         }
     }

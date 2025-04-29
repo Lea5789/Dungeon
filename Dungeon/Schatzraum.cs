@@ -2,29 +2,30 @@
 
 namespace Dungeon
 {
-     public class Schatzraum:ARaum
+    class Schatzraum : ARaum
     {
+        public Schaetze.ESchatz Schatz { get; set; }
+        private bool wurdeGesammelt = false;
+
+        public Schatzraum(Schaetze.ESchatz schatz)
+        {
+            Schatz = schatz;
+        }
+
         public override void Betreten(Held held, Welt welt)
         {
             held.Standort = this;
+            if (!wurdeGesammelt)
+            {
+                held.Rucksack.Add(Schatz);
+                Console.WriteLine($"{held.Name} findet Schatz: {Schatz}!");
+                wurdeGesammelt = true;
+            }
+            else
+            {
+                Console.WriteLine("Hier ist kein Schatz mehr!!");
+            }
         }
-
-        public enum ESchatz
-        {
-            Gold,
-            Truhe,
-            None
-        };
-        public ESchatz schatz { get; set; }
-        if(Held.Betreten())
-        {
-            Console.WriteLine($"{Held} findet einen schatz");
-            break;
-            
-        }else
-    {
-        Console.WriteLine($"{Held} hat keinen Schatz gefunden");
-        
-    }//hier:es fehlt das der neue schatz in den rucksack des helden hinzugefügt wird=>mit der Methode ADD()
     }
+
 }
